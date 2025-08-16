@@ -1,0 +1,31 @@
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function(matrix, target) {
+    let row = -1;
+    for(let i=0;i<matrix.length;i++){
+        console.log(matrix[i][matrix[0].length-1])
+        if(target === matrix[i][matrix[0].length-1]) {
+            return true;
+        } 
+        if(target<matrix[i][matrix[0].length-1]){
+            row = i;
+            break;
+        }
+  
+    }
+    if(row === -1)return false
+    for(let i=0;i<matrix[0].length-1;i++){
+        console.log(row)
+        console.log(i)
+        if(target === matrix[row][i]){
+            return true;
+        }
+        else if(target < matrix[row][i]){
+            return false;
+        }
+    }
+    return false;
+};
