@@ -1,0 +1,29 @@
+//121. Best Time to Buy and Sell Stock
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+
+    let maxProfit = 0;
+    let maxNum = -1;
+    let minNum = 999999999
+    let item = 0;    
+    for(let i=0;i< prices.length;i++){
+        item = prices[i]
+    if(item < minNum){
+        minNum = item
+        maxNum = 0
+    }
+    if(item > maxNum){
+        maxNum = item;
+    }
+    if(maxNum - minNum > maxProfit){
+        console.log(maxNum)
+        console.log(minNum)
+        maxProfit = maxNum - minNum
+    }
+    }
+    return maxProfit
+};
