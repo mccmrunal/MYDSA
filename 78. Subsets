@@ -1,0 +1,26 @@
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+
+    let ans = [];
+    let level = 0 ;
+    let allsubsets = []
+
+    function findSubSets(nums,ans,level,allsubsets){
+        if(level === nums.length){
+            console.log(ans);
+            allsubsets.push([...ans])
+            return
+        }
+        ans.push(nums[level]);
+        level+=1;
+        findSubSets(nums,ans,level,allsubsets);
+        ans.pop();
+        findSubSets(nums,ans,level,allsubsets)
+    }
+    findSubSets(nums,ans,level,allsubsets)
+    return allsubsets
+    
+};
