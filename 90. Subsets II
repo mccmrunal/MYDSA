@@ -1,0 +1,28 @@
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsetsWithDup = function(nums) {
+    nums = nums.sort();
+    let ans = [];
+    let finalAns = [];
+    let level = 0;
+    function subsetsUnique(nums,ans,finalAns,level){
+        if(level === nums.length){
+            console.log(ans)
+            finalAns.push([...ans])
+            return
+        }
+        ans.push(nums[level]);
+        level++;
+        subsetsUnique(nums,ans,finalAns,level);
+        ans.pop();
+        if(nums[level-1] === nums[level] && level <= nums.length-1){
+            level++
+        }
+        subsetsUnique(nums,ans,finalAns,level);
+
+    }
+    subsetsUnique(nums,ans,finalAns,level)
+    return finalAns
+};
