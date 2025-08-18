@@ -1,0 +1,41 @@
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+ function checkSum(arr){
+    let sum = 0;
+    arr.forEach(item=>{
+        
+        sum+=item;
+    });
+    return sum;
+ }
+var combinationSum = function(candidates, target) {
+    let finalAns = [];
+    let ans = [];
+    let index = 0;
+    function giveCombs(candidates,target,finalAns,index,ans){
+    if(index > candidates.length-1){
+        return
+    }
+    let sum = checkSum(ans);
+    console.log(ans)
+    if(sum > target){
+        return
+    }
+    if(sum === target){
+        console.log(ans)
+        finalAns.push([...ans])
+        return
+    }
+    ans.push(candidates[index]);
+    giveCombs(candidates,target,finalAns,index,ans);
+    index++;
+    ans.pop()
+    giveCombs(candidates,target,finalAns,index,ans)
+    }
+    giveCombs(candidates,target,finalAns,index,ans)
+
+    return finalAns
+};
