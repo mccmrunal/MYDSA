@@ -1,0 +1,40 @@
+/**
+ * @param {number[][]} grid
+ * @return {boolean}
+ */
+var checkValidGrid = function(grid) {
+    if(grid[0][0]!==0){
+        return false
+    }
+    let flag = false;
+    let rows = grid.length;
+    let depth = 1;
+    let cols = grid[0].length;
+    let xvals = [1,1,-1,-1,2,-2,-2,2];
+    let yvals = [2,-2,2,-2,1,1,-1,-1]
+     function path (x,y,depth){
+        if(depth === (rows*cols)){
+            return true;
+        }
+        for(let i=0;i<xvals.length;i++){
+            let _x = x+xvals[i];
+            let _y = y+yvals[i];
+            console.log(depth)
+            if(_x>-1 && _y>-1 && _x<rows &&_y<rows && grid[_x][_y] === depth){
+                depth++;
+                console.log(_x,_y)
+                return path(_x,_y,depth);
+                depth--;
+                console.log("here")
+            }else{
+                console.log("here1")
+                continue
+            }
+        }
+        return false
+    }
+
+    return path(0,0,depth);
+    return flag;
+    
+};
