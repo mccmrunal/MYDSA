@@ -1,0 +1,44 @@
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum2 = function(candidates, target) {
+    candidates = candidates.sort((a,b)=>a-b)
+    let index = 0;
+    let ans = [];
+    let finalAns = [];
+
+    function combs(candidates,target,index,ans,finalAns){
+        console.log(ans)
+        if(target === 0){
+            console.log(ans)
+            finalAns.push([...ans]);
+            return;
+        }
+        if(target < 0){
+            return
+        }
+        for(let i=index;i<candidates.length;i++){
+
+            if(i >index && candidates[i-1] === candidates[i]){
+                continue;
+            }
+            
+            if(candidates[i]>target){
+                break;
+            }
+            ans.push(candidates[i]);
+            target-=candidates[i];
+            combs(candidates,target,i+1,ans,finalAns);
+            ans.pop();
+            target+=candidates[i];
+ 
+        }
+
+    }
+
+    combs(candidates,target,index,ans,finalAns);
+    return finalAns;
+
+};
