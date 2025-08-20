@@ -1,0 +1,29 @@
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var findTargetSumWays = function(nums, target) {
+    let finalAns = {count:0};
+    let ans="";
+    let level = 0;
+
+    function combs(ans,finalAns,level,target){
+        if(level === nums.length && target === 0){
+            finalAns.count++;
+            return;
+        }
+        if(level === nums.length){
+            return
+        }
+            //positive
+            target-=(nums[level]);
+            combs(ans,finalAns,level+1,target);
+            target+=(nums[level]);
+            target+=(nums[level]);
+            combs(ans,finalAns,level+1,target);
+    }
+    combs(ans,finalAns,level,target);
+    return finalAns.count
+    
+};
