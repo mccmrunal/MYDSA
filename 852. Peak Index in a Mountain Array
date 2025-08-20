@@ -1,0 +1,33 @@
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var peakIndexInMountainArray = function(nums) {
+    let min = -99999;
+    nums.forEach(item=>{
+        if(item > min){
+            min = item;
+        }
+    });
+    let k = nums.indexOf(min);
+    console.log(min)
+    nums = nums.sort((a,b)=>a-b)
+
+    let left = 0;
+    let right  = nums.length -1;
+
+    while(left <= right){
+        let mid = Math.floor((left+right)/2);
+        console.log(mid,nums[mid])
+        if(nums[mid] === min){
+            return Math.floor((mid+k)%nums.length)+1;
+        }
+        if(min > nums[mid]){
+            left  = mid+1;
+        }else{
+            right  = mid-1
+        }
+    }
+    return -1;
+
+};
