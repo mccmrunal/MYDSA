@@ -1,0 +1,29 @@
+/**
+ * @param {string} digits
+ * @return {string[]}
+ */
+var letterCombinations = function(digits) {
+    if(digits === ""){
+        return []
+    }
+    let nums = ["","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"];
+    let ans = "";
+    let finalAns = [];
+    let level = 0;
+    function recurse(level,ans,finalAns){
+        
+        if(ans.length === digits.length){
+            finalAns.push(ans)
+            return
+        }
+        console.log(level)
+        for(let i=0;i<nums[digits[level]].length;i++){
+            let s = nums[digits[level]];
+            ans+= s[i];
+            recurse(level+1,ans,finalAns);
+            ans = ans.slice(0,-1);
+        }
+    };
+    recurse(level,ans,finalAns);
+    return finalAns
+};
