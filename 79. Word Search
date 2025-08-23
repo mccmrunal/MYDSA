@@ -1,0 +1,59 @@
+/**
+ * @param {character[][]} board
+ * @param {string} word
+ * @return {boolean}
+ */
+var exist = function(board, word) {
+    let flag = false;
+    let level = 0;
+    let ans = ""
+    let rows = [-1,0,0,1];
+    let cols = [0,-1,1,0];
+    let indices = new Set();
+    function path(board,word,row,col,flag,level,ans,indices){
+
+        if(ans === word){
+            flag = true;
+            console.log("flag",flag)
+            return flag
+        }
+        for(let i=0;i<rows.length;i++){
+                let _row = row+rows[i];
+                let _col = col+cols[i];
+
+                if(_row > -1 &&  _col >-1 &&  _row <board.length &&  _col < board[0].length){
+                    let indicessize = indices.size;
+                    indices.add(`${_row},${_col}`)
+                    if(indicessize === indices.size){
+                        continue;
+                    }
+                    if(board[_row][_col] === word[level]){
+
+                        ans+=word[level];
+                        if(path(board,word,_row,_col,flag,level+1,ans,indices)){
+                            return true;
+                        };
+                        ans=ans.slice(0,-1);
+                    }
+                    indices.delete(`${_row},${_col}`);
+                }
+            
+        }
+    }
+    for(let i=0;i<board.length;i++){
+        for(let j=0;j<board[0].length;j++){
+            if(board[i][j] === word[0]){
+                ans+=word[0];
+                indices.add(`${i},${j}`)
+                if(path(board,word,i,j,flag,level+1,ans,indices)){
+                    return true
+                };
+                ans=ans.slice(0,-1);
+                indices.delete(`${i},${j}`)
+
+            }
+        }
+    }
+    return flag;
+    
+};
