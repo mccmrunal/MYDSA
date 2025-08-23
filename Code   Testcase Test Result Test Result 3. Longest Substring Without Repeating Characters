@@ -1,0 +1,29 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+    let str = {};
+    let neew = [""]
+    let lastIndex = s.length;
+   
+   
+    for(let i = s.length -1; i> -1 ; i--){
+       if(str[s[i]] === 1){
+           
+           let newstr = s.slice(i,lastIndex-1);
+           if(newstr.length > neew[0].length){
+            neew[0] = (newstr)
+           }
+
+           lastIndex -= neew[neew.length-1].length-1
+           i = lastIndex
+           str = {};
+       }else{
+           str[s[i]] = 1;
+       }
+    }
+
+    return Math.max(Object.keys(str).length,neew[0].length)
+   
+};
