@@ -1,0 +1,33 @@
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var setZeroes = function(matrix) {
+
+    let arrI = [];
+    let arrJ = [];
+
+    matrix.forEach((items,itemsIndex)=>{
+        items.forEach((item,itemIndex)=>{
+            if(item === 0){
+                if(!arrI.includes(itemsIndex)){
+                    arrI.push(itemsIndex)
+                }
+                if(!arrJ.includes(itemIndex)){
+                    arrJ.push(itemIndex)
+                }
+            }
+        })
+    });
+    console.log(arrI);
+    console.log(arrJ)
+    for(let i=0;i<matrix[0].length;i++){
+        for(let j=0;j<matrix.length;j++){
+            if(arrI.includes(j) || arrJ.includes(i)){
+                matrix[j][i] = 0;
+            }
+        }
+    }
+
+    
+};
