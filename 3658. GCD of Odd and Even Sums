@@ -1,0 +1,28 @@
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var gcdOfOddEvenSums = function(n) {
+
+    let odd = 1;
+    let oddSum = 1;
+    let evenSum = 2;
+    let even = 2;
+
+    for(let i=0;i<n-1;i++){
+        odd+=2;
+        even+=2;
+        oddSum+=odd;
+        evenSum+=even;
+    };
+    function GDC(x,y){
+        let GCD = 0;
+        for(let i=Math.ceil((Math.min(x,y)/2)) ; i > 0  ;i--){
+            if(Number.isInteger(x/i) && Number.isInteger(y/i)){
+               return i
+            }
+        }
+        return GCD;
+    }
+    return GDC(evenSum,oddSum)
+};
