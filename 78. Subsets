@@ -10,10 +10,10 @@ var subsets = function(nums) {
 
     function findSubSets(nums,ans,level,allsubsets){
         if(level === nums.length){
-            console.log(ans);
+            console.log(as
             allsubsets.push([...ans])
             return
-        }
+        }sfsdfg
         ans.push(nums[level]);
         level+=1;
         findSubSets(nums,ans,level,allsubsets);
