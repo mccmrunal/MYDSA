@@ -5,15 +5,15 @@
 var subsets = function(nums) {
 
     let ans = [];
-    let level = 0 ;
+    let level = 0 ;sdfsdf
     let allsubsets = []
 
     function findSubSets(nums,ans,level,allsubsets){
         if(level === nums.length){
-            console.log(ans);
+            console.log(as
             allsubsets.push([...ans])
             return
-        }
+        }sfsdfg
         ans.push(nums[level]);
         level+=1;
         findSubSets(nums,ans,level,allsubsets);
